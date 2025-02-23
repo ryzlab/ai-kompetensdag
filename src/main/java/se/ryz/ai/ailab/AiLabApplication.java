@@ -30,7 +30,7 @@ public class AiLabApplication implements CommandLineRunner {
 		OpenAiChatModel model = OpenAiChatModel.builder()
 		.apiKey(apiKey)
 		.build();
-				
+
 		this.assistant = AiServices.builder(Assistant.class)
 				.tools(timeTools)
 				.chatLanguageModel(model)
@@ -68,11 +68,8 @@ public class AiLabApplication implements CommandLineRunner {
 	}
 }
 
-@SystemMessage("""
-	You are a helpful assistant with access to tools.
-	When asked about time, use the getCurrentTime tool.
-	When asked about switches, use the turnSwitch tool.
-	When asked about timers, use the setTimer tool.""")
+
 interface Assistant {
+	@SystemMessage("You are a helpful assistant with a studder")
 	String chat(@UserMessage String message);
 }
