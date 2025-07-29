@@ -7,21 +7,23 @@ import dev.langchain4j.model.openai.OpenAiImageModel;
 import dev.langchain4j.model.openai.OpenAiImageModelName;
 import dev.langchain4j.model.output.Response;
 import groovy.util.logging.Slf4j;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import java.io.FileOutputStream;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URI;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Base64;
 
 @Slf4j
 @Component
@@ -45,7 +47,7 @@ public class Tools {
 
     @Tool("Turn on or off the given switch")
     public String turnSwitch(String switchName, String onOff) {
-        System.out.println("Turning switch " + switchName + " " + onOff);
+        System.out.println("Turning switch '" + switchName + "' '" + onOff + "'");
         return "Switch " + switchName + " turned " + onOff;
     }
 
@@ -53,19 +55,25 @@ public class Tools {
     public String generateImage(String prompt, String fileName) {
         System.out.println("Generating image for prompt: " + prompt + ", downloading to " + fileName);
         ImageModel model = OpenAiImageModel.builder()
-                    .apiKey(apiKey)
-                    .modelName(OpenAiImageModelName.DALL_E_3)
-                    .build();
+                .apiKey(apiKey)
+                .modelName(OpenAiImageModelName.DALL_E_3)
+                .build();
 
-            Response<Image> response = model.generate(prompt);
-            System.out.println(response.content().url()); 
-            try {
-                downloadFile(response.content().url(), fileName);
-            } catch(IOException e) {
-                System.out.println("Unable to download file %s".format(fileName));
-                e.printStackTrace();
-            }
+        Response<Image> response = model.generate(prompt);
+        System.out.println(response.content().url());
+        try {
+            downloadFile(response.content().url(), fileName);
+        } catch (IOException e) {
+            System.out.println("Unable to download file %s".format(fileName));
+            e.printStackTrace();
+        }
         return "Image generated for prompt: " + prompt;
+    }
+
+    @Tool("When asked to describe an image, use this tool to create a base-64 representation of the given file")
+    public String describeImage(String fileName) {
+        System.out.println("Describing...");
+        return "The image to describe: " + encodeImageToBase64(fileName);
     }
 
     public static void downloadFile(URI url, String destinationFilePath) throws IOException {
@@ -89,6 +97,20 @@ public class Tools {
 
         // Disconnect the connection
         httpURLConnection.disconnect();
+    }
+
+    private static String encodeImageToBase64(String filePath) {
+        try {
+            File file = new File(filePath);
+            BufferedImage image = ImageIO.read(file);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write(image, "jpg", baos);
+            byte[] imageBytes = baos.toByteArray();
+            return Base64.getEncoder().encodeToString(imageBytes);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
 } 
