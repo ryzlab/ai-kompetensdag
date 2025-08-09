@@ -22,6 +22,8 @@ import java.io.InputStreamReader;
 public class AiLabApplication implements CommandLineRunner {
     private final Assistant assistant;
 
+    // Create file application-apikey.properties in resources directory and run with
+    // profile 'apikey'
     public AiLabApplication(@Value("${spring.ai.openai.api-key}") String apiKey, Tools timeTools) {
 
         OpenAiChatModel model = OpenAiChatModel.builder()

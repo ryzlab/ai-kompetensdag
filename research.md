@@ -4,9 +4,9 @@ A new prompting technique that boils down chain of thought to only the
 essential elements
 
 Att undersöka
- * Standard
- * Chain of thought (CoT)
- * Chain of draft (CoD)
+Standard
+Chain of thought (CoT)
+Chain of draft (CoD)
 https://www.youtube.com/watch?v=rYnisU10wu0
 
 Standard
