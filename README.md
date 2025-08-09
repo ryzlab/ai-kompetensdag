@@ -1,15 +1,23 @@
 # Getting Started
 
-AiLabApplication is the main application.
-Tools are in the tools package.
-
-CMD + Shift + L to open chat.
-
-Build application with
+## Build application with
 `$ ./gradlew build`
 
-Set environment variable for OpenAI API key
-`$ export SPRING_AI_OPENAI_API_KEY=<API KEY>`
+## Chat
 
-Run application with
-`$ java -jar build/libs/aidemo-0.0.1-SNAPSHOT.jar`
+Run chat with
+
+`SPRING_PROFILES_ACTIVE=apikey,chat ./gradlew bootRun -PmainClass=se.ryz.ai.ailab.Chat`
+
+## Indexer
+
+Run indexer with
+
+`$ SPRING_PROFILES_ACTIVE=apikey,index ./gradlew bootRun -PmainClass=se.ryz.ai.ailab.IndexDocument --args='<DOCUMENT>'`
+
+Document can be a pdf or text file
+
+## Chat with document
+
+Run with
+`$ SPRING_PROFILES_ACTIVE=apikey,chatdocument ./gradlew bootRun -PmainClass=se.ryz.ai.ailab.ChatDocument`

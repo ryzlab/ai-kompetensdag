@@ -41,6 +41,8 @@ dependencies {
 	implementation 'dev.langchain4j:langchain4j:1.1.0'
 	implementation 'dev.langchain4j:langchain4j-open-ai:1.1.0'
 	implementation 'dev.langchain4j:langchain4j-ollama:1.1.0-rc1'
+	implementation 'dev.langchain4j:langchain4j-milvus:1.3.0-beta9'
+	implementation("org.apache.pdfbox:pdfbox:3.0.5")
 }
 
 dependencyManagement {
@@ -54,9 +56,21 @@ tasks.named('test') {
 }
 
 springBoot {
-	mainClass = 'se.ryz.ai.ailab.AiLabApplication'
+	// Default main class
+	mainClass.set("se.ryz.ai.ailab.Chat")
+
+	// Allow overriding via -PmainClass
+	if (project.hasProperty("mainClass")) {
+		mainClass = project.property("mainClass")
+	}
+	//mainClass = 'se.ryz.ai.ailab.Chat'
 }
 
 tasks.named('run') {
 	standardInput = System.in
+}
+
+bootRun {
+	standardInput = System.in
+
 }

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Profile;
 import se.ryz.ai.ailab.tools.Tools;
 
 import java.io.BufferedReader;
@@ -19,12 +20,13 @@ import java.io.InputStreamReader;
         org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration.class,
         org.springframework.boot.autoconfigure.web.reactive.WebFluxAutoConfiguration.class
 })
-public class AiLabApplication implements CommandLineRunner {
+@Profile("chat")
+public class Chat implements CommandLineRunner {
     private final Assistant assistant;
 
     // Create file application-apikey.properties in resources directory and run with
     // profile 'apikey'
-    public AiLabApplication(@Value("${spring.ai.openai.api-key}") String apiKey, Tools timeTools) {
+    public Chat(@Value("${spring.ai.openai.api-key}") String apiKey, Tools timeTools) {
 
         OpenAiChatModel model = OpenAiChatModel.builder()
                 .modelName("gpt-4o")
@@ -45,7 +47,7 @@ public class AiLabApplication implements CommandLineRunner {
 
     public static void main(String[] args) {
         try {
-            SpringApplication.run(AiLabApplication.class, args);
+            SpringApplication.run(Chat.class, args);
         } catch (RuntimeException e) {
             e.printStackTrace();
         }
