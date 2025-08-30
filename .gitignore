@@ -37,3 +37,4 @@ out/
 .vscode/
 application-apikey.properties
 .~lock.*
+volumes

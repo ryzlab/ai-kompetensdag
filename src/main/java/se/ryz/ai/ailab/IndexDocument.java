@@ -19,6 +19,8 @@ import org.springframework.context.annotation.Profile;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -117,7 +119,18 @@ public class IndexDocument implements CommandLineRunner {
     }
 
 
-    private String extractText(String pdfPath) throws IOException {
+    private String extractText(String filePath) throws IOException {
+        if (filePath.endsWith(".pdf")) {
+            return extractPdfText(filePath);
+        }
+        return extractFileText(filePath) ;
+    }
+
+    private String extractFileText(String filePath) throws IOException {
+        return new String(Files.readAllBytes(Paths.get(filePath)));
+    }
+
+    private String extractPdfText(String pdfPath) throws IOException {
         InputStream inputStream = new FileInputStream(pdfPath);
         RandomAccessRead read = new RandomAccessReadBuffer(inputStream);
         PDFParser parser = new PDFParser(read);
