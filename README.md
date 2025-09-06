@@ -9,7 +9,7 @@ Om du vill testa att köra en modell lokalt utan att använda internet kan Ollam
 
 Ollama finns att installera från https://ollama.com/
 
-Det tar ett tag och kräver en del bandbredd att köra modeller så innan kompetensdagen kan det vara bra att köra Ollama en gång så att modellen laddas ned.
+Det tar ett tag att ladda hem en modell så för att förbereda kan man köra modellen Ollama 3.2:
 
 `$ ollama run llama3.2`
 
@@ -17,7 +17,7 @@ Testa att chatta och se om det går någorlunda snabbt att få svar.
 Labbarna går att köra lokalt mot Ollama eller mot OpenAI:S modeller på nätet.
 
 ## Ladda hem Milvus
-Milvus är en vektordatabas som kan användas när man jobbar med AI.
+Milvus är en vektordatabas som kan användas när man jobbar med AI och RAG.
 Som förberedelse, kör 
 
 `$ docker-compose up`
