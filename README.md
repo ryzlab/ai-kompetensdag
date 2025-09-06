@@ -1,9 +1,12 @@
-# Förberedelser
+# Förberedelser (valfritt)
 
 Det krävs inga förberedelser men det kan ändå vara bra att följa instruktionerna i detta avsnitt eftersom det är en del som måste laddas ned och installeras innan labbarna kan göras.
 
 
 ## Installera Ollama
+
+Om du vill testa att köra en modell lokalt utan att använda internet kan Ollama vara ett bra alternativ.
+
 Ollama finns att installera från https://ollama.com/
 
 Det tar ett tag och kräver en del bandbredd att köra modeller så innan kompetensdagen kan det vara bra att köra Ollama en gång så att modellen laddas ned.
