@@ -1,4 +1,4 @@
-# Förberedelser (valfritt)
+# Förberedelser
 
 Det krävs inga förberedelser men det kan ändå vara bra att följa instruktionerna i detta avsnitt eftersom det är en del som måste laddas ned och installeras innan labbarna kan göras.
 
