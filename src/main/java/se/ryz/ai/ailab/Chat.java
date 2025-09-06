@@ -1,6 +1,7 @@
 package se.ryz.ai.ailab;
 
 import dev.langchain4j.memory.chat.MessageWindowChatMemory;
+import dev.langchain4j.model.ollama.OllamaChatModel;
 import dev.langchain4j.model.openai.OpenAiChatModel;
 import dev.langchain4j.service.AiServices;
 import dev.langchain4j.service.SystemMessage;
@@ -33,11 +34,11 @@ public class Chat implements CommandLineRunner {
                 .apiKey(apiKey)
                 .build();
 
-		/*OllamaChatModel model = OllamaChatModel.builder()
-				.baseUrl("http://localhost:11434") // Default port for Ollama
-				.modelName("llama3.2") // Or any other model you have pulled, like "mistral", "phi3", etc.
+		OllamaChatModel model2 = OllamaChatModel.builder()
+				.baseUrl("http://localhost:11434")
+				.modelName("llama3.2")
 				.build();
-*/
+
         this.assistant = AiServices.builder(Assistant.class)
                 .tools(timeTools)
                 .chatModel(model)

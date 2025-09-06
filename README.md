@@ -26,18 +26,22 @@ i projektets rotkatalog där `docker-compose.yml` ligger. Det kommer att ta ett 
 
 Nu är allt förberett för att kompetensdagen ska gå smidigare.
 
-# Labbar
+# Exepmelapplikationer
 
-Här kommer instruktioner för att köra labbarna under kompetensdagen.
+Här kommer instruktioner för att köra exemplena under kompetensdagen.
 
 ## Bygg applikationerna med
 `$ ./gradlew build`
+
+## Konfigurera API-nyckel
+Kopiera filen `src/main/resources/application-apikey.properties-template` till `src/main/resources/application-apikey.properties` och konfigurera
+api nyckeln för OpenAI (kommer på kompetensdagen) i filen.
 
 ## Applikationen Chat
 
 Kör chat med
 
-`SPRING_PROFILES_ACTIVE=apikey,chat ./gradlew bootRun -PmainClass=se.ryz.ai.ailab.Chat`
+`$ SPRING_PROFILES_ACTIVE=apikey,chat ./gradlew bootRun -PmainClass=se.ryz.ai.ailab.Chat`
 
 ## Applikationen Indexer
 
