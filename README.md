@@ -55,3 +55,11 @@ Dokumentet kan vara en pdf eller textfil
 
 Kör med
 `$ SPRING_PROFILES_ACTIVE=apikey,chatdocument ./gradlew bootRun -PmainClass=se.ryz.ai.ailab.ChatDocument`
+
+# Shelly
+Exempelkommando
+
+Sätt SHELLY till IP-adressen för Shelly
+
+`$ SHELLY=
+`$ curl -X POST -d '{"id":1,"method":"Switch.Set","params":{"id":0,"on":false}}' http://${SHELLY}/rpc`
