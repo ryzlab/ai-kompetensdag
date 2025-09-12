@@ -57,9 +57,10 @@ Kör med
 `$ SPRING_PROFILES_ACTIVE=apikey,chatdocument ./gradlew bootRun -PmainClass=se.ryz.ai.ailab.ChatDocument`
 
 # Shelly
-Exempelkommando
+Kommandon för att slå av och på en Shelly enhet via dess REST API
 
-Sätt SHELLY till IP-adressen för Shelly
+För att slå på shelly
+`curl -X POST -d '{"id":1,"method":"Switch.Set","params":{"id":0,"on":true}}' http://172.16.50.40/rpc`
 
-`$ SHELLY=
-`$ curl -X POST -d '{"id":1,"method":"Switch.Set","params":{"id":0,"on":false}}' http://${SHELLY}/rpc`
+För att slå av shelly
+`curl -X POST -d '{"id":1,"method":"Switch.Set","params":{"id":0,"on":false}}' http://172.16.50.40/rpc`
